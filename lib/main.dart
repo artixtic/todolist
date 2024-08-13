@@ -6,11 +6,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:todolist/bloc/singleton_bloc.dart';
+import 'package:todolist/bloc/startup_bloc.dart';
 import 'package:todolist/core/theme.dart';
 import 'package:todolist/router/app_router_delegate.dart';
 import 'package:wc_dart_framework/wc_dart_framework.dart';
 
 import 'core/config.dart';
+import 'pages/auth/login/bloc/login_bloc.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
@@ -32,7 +35,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [],
+        providers: [
+          BlocProvider(
+            lazy: false,
+            create: (final _) => StartupBloc(),
+          ),
+          BlocProvider(
+            lazy: false,
+            create: (final _) => singletonBloc.profileBloc,
+          ),
+          BlocProvider(
+            lazy: false,
+            create: (final _) =>
+                LoginBloc(profileBloc: singletonBloc.profileBloc),
+          ),
+        ],
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: FlutterSizer(builder: (context, orientation, screenType) {

@@ -106,5 +106,6 @@
   "add_to_concert": "Add to Concert",
   "email_sent": "Email has been sent to your email address",
   "welcome_message": "Welcome to Lyrics Generator! Find lyrics for all your favorite songs and discover new ones. Enjoy the music!",
-  "find_song_artist_album_or_etc":"Find song, artist, album, or etc"
+  "find_song_artist_album_or_etc":"Find song, artist, album, or etc",
+  "projects":"Projects"
 }

@@ -67,6 +67,6 @@ ThemeData getTheme() {
         fontWeight: FontWeight.w600,
       ),
     ),
-    scaffoldBackgroundColor: const Color(0xff000000),
+    // scaffoldBackgroundColor: const Color(0xff000000),
   );
 }

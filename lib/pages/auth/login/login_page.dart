@@ -1,37 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:todolist/core/colors.dart';
 
-import '../../../bloc/profile_bloc.dart';
 import '../../../extensions/context.dart';
-import '../../../utils/navigator.dart';
 import '../../../widgets/list_view.dart';
 import '../../../widgets/loading_text.dart';
-import '../../../widgets/navigator/bloc/pilot_bloc.dart';
 import '../../../widgets/scaffold.dart';
 import '../../../widgets/text_fields/form.dart';
 import 'bloc/login_bloc.dart';
-import 'login_form.dart';
 
 class LoginPage extends StatelessWidget {
-  static const ROUTE_NAME = 'auth/login';
-
-  const LoginPage._();
-
-  static Future<void> push(final BuildContext context) {
-    return pushMaterialPageRoute(
-      context,
-      name: ROUTE_NAME,
-      builder: (final _) => BlocProvider(
-        create: (final _) => LoginBloc(
-          profileBloc: ProfileBloc.of(context),
-        ),
-        child: const LoginPage._(),
-      ),
-    );
-  }
-
   @override
   Widget build(final BuildContext context) {
     return LoginBlocSelector(
@@ -58,11 +36,11 @@ class LoginPage extends StatelessWidget {
                         child: ListView(
                           shrinkWrap: true,
                           children: [
-                            LoginForm(
-                              onSubmit: () => _onSubmit(context),
-                            ),
-                            const SizedBox(height: 20),
-                            const SizedBox(height: 40),
+                            // LoginForm(
+                            //   onSubmit: () => _onSubmit(context),
+                            // ),
+                            // const SizedBox(height: 20),
+                            // const SizedBox(height: 40),
                             _BottomButtons(
                               onSubmit: () => _onSubmit(context),
                             ),
@@ -78,9 +56,9 @@ class LoginPage extends StatelessWidget {
   }
 
   void _onSubmit(final BuildContext context) {
-    if (!Form.of(context).validate()) {
-      return;
-    }
+    // if (!Form.of(context).validate()) {
+    //   return;
+    // }
     LoginBloc.of(context).callLogin();
   }
 }

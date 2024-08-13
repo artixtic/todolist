@@ -12,7 +12,7 @@ class AppScaffold extends StatelessWidget {
     final bloc = StartupBloc.of(context);
     return Scaffold(
       appBar: appBar,
-      backgroundColor: Colors.black.withOpacity(0),
+      // backgroundColor: Colors.black.withOpacity(0),
       body: body,
     );
   }
