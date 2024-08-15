@@ -3,7 +3,6 @@ import 'package:wc_dart_framework/wc_dart_framework.dart';
 
 import '../bloc/singleton_bloc.dart';
 import '../core/config.dart';
-import '../models/data/api_meta_data.dart';
 
 export 'package:dio/dio.dart';
 
@@ -75,18 +74,18 @@ class _CustomInterceptor extends Interceptor {
     final ResponseInterceptorHandler handler,
   ) {
     try {
-      final meta = ApiMetaData.fromDynamic(response.data);
-      if (meta.code != 200) {
+      // final meta = ApiMetaData.fromDynamic(response.data);
+      if (response.statusCode != 200) {
         _logger.severe(
           'PATH: ${response.requestOptions.method} ${response.requestOptions.path} || ERROR: ${response.data}',
         );
         handler.reject(
           DioError(
             requestOptions: response.requestOptions,
-            message: meta.msg,
+            message: "Done",
             response: response,
             type: DioErrorType.badResponse,
-            error: meta,
+            error: "Eroor",
           ),
         );
       }

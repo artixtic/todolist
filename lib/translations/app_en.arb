@@ -39,7 +39,7 @@
   "delete_message": "Are you sure you want to delete?",
   "listing_name": "Listing name",
   "listing_errNameReq": "Listing name is required",
-  "listing_errNameInvalid": "Your listing name should be of at least 3 characters",
+  "listing_errNameInvalid": "Your Comment should be of at least 3 characters",
   "city_name": "City",
   "city_errNameReq": "City is required",
   "city_errNameInvalid": "Your city name should be of at least 3 characters",

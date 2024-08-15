@@ -34,19 +34,6 @@ class ProjectBlocSelector<T> extends StatelessWidget {
     this.bloc,
   }) : super(key: key);
 
-  static ProjectBlocSelector<AppFlowyBoardController> controller({
-    final Key? key,
-    required Widget Function(AppFlowyBoardController controller) builder,
-    final ProjectBloc? bloc,
-  }) {
-    return ProjectBlocSelector(
-      key: key,
-      selector: (state) => state.controller,
-      builder: (value) => builder(value),
-      bloc: bloc,
-    );
-  }
-
   static ProjectBlocSelector<AppFlowyBoardScrollController> boardController({
     final Key? key,
     required Widget Function(AppFlowyBoardScrollController boardController)
@@ -61,6 +48,45 @@ class ProjectBlocSelector<T> extends StatelessWidget {
     );
   }
 
+  static ProjectBlocSelector<String?> title({
+    final Key? key,
+    required Widget Function(String? title) builder,
+    final ProjectBloc? bloc,
+  }) {
+    return ProjectBlocSelector(
+      key: key,
+      selector: (state) => state.title,
+      builder: (value) => builder(value),
+      bloc: bloc,
+    );
+  }
+
+  static ProjectBlocSelector<String?> comment({
+    final Key? key,
+    required Widget Function(String? comment) builder,
+    final ProjectBloc? bloc,
+  }) {
+    return ProjectBlocSelector(
+      key: key,
+      selector: (state) => state.comment,
+      builder: (value) => builder(value),
+      bloc: bloc,
+    );
+  }
+
+  static ProjectBlocSelector<int?> activeIndex({
+    final Key? key,
+    required Widget Function(int? activeIndex) builder,
+    final ProjectBloc? bloc,
+  }) {
+    return ProjectBlocSelector(
+      key: key,
+      selector: (state) => state.activeIndex,
+      builder: (value) => builder(value),
+      bloc: bloc,
+    );
+  }
+
   static ProjectBlocSelector<ApiState<void>> allProjectApi({
     final Key? key,
     required Widget Function(ApiState<void> allProjectApi) builder,
@@ -69,6 +95,32 @@ class ProjectBlocSelector<T> extends StatelessWidget {
     return ProjectBlocSelector(
       key: key,
       selector: (state) => state.allProjectApi,
+      builder: (value) => builder(value),
+      bloc: bloc,
+    );
+  }
+
+  static ProjectBlocSelector<ApiState<void>> addCommentApi({
+    final Key? key,
+    required Widget Function(ApiState<void> addCommentApi) builder,
+    final ProjectBloc? bloc,
+  }) {
+    return ProjectBlocSelector(
+      key: key,
+      selector: (state) => state.addCommentApi,
+      builder: (value) => builder(value),
+      bloc: bloc,
+    );
+  }
+
+  static ProjectBlocSelector<ApiState<void>> allCommentApi({
+    final Key? key,
+    required Widget Function(ApiState<void> allCommentApi) builder,
+    final ProjectBloc? bloc,
+  }) {
+    return ProjectBlocSelector(
+      key: key,
+      selector: (state) => state.allCommentApi,
       builder: (value) => builder(value),
       bloc: bloc,
     );
@@ -100,6 +152,19 @@ class ProjectBlocSelector<T> extends StatelessWidget {
     );
   }
 
+  static ProjectBlocSelector<BuiltList<dynamic>?> comments({
+    final Key? key,
+    required Widget Function(BuiltList<dynamic>? comments) builder,
+    final ProjectBloc? bloc,
+  }) {
+    return ProjectBlocSelector(
+      key: key,
+      selector: (state) => state.comments,
+      builder: (value) => builder(value),
+      bloc: bloc,
+    );
+  }
+
   static ProjectBlocSelector<BuiltList<ProjectDataById>?> projectDataById({
     final Key? key,
     required Widget Function(BuiltList<ProjectDataById>? projectDataById)
@@ -126,20 +191,6 @@ class ProjectBlocSelector<T> extends StatelessWidget {
 
 mixin _ProjectBlocMixin on Cubit<ProjectState> {
   @mustCallSuper
-  void updateController(final AppFlowyBoardController controller) {
-    if (state.controller == controller) {
-      return;
-    }
-
-    emit(state.rebuild((final b) => b.controller = controller));
-
-    $onUpdateController();
-  }
-
-  @protected
-  void $onUpdateController() {}
-
-  @mustCallSuper
   void updateBoardController(
       final AppFlowyBoardScrollController boardController) {
     if (state.boardController == boardController) {
@@ -153,6 +204,67 @@ mixin _ProjectBlocMixin on Cubit<ProjectState> {
 
   @protected
   void $onUpdateBoardController() {}
+
+  @mustCallSuper
+  void updateTitle(final String? title) {
+    if (state.title == title) {
+      return;
+    }
+
+    emit(state.rebuild((final b) => b.title = title));
+
+    $onUpdateTitle();
+  }
+
+  @protected
+  void $onUpdateTitle() {}
+
+  @mustCallSuper
+  void updateComment(final String? comment) {
+    if (state.comment == comment) {
+      return;
+    }
+
+    emit(state.rebuild((final b) => b.comment = comment));
+
+    $onUpdateComment();
+  }
+
+  @protected
+  void $onUpdateComment() {}
+
+  @mustCallSuper
+  void updateActiveIndex(final int? activeIndex) {
+    if (state.activeIndex == activeIndex) {
+      return;
+    }
+
+    emit(state.rebuild((final b) => b.activeIndex = activeIndex));
+
+    $onUpdateActiveIndex();
+  }
+
+  @protected
+  void $onUpdateActiveIndex() {}
+
+  @mustCallSuper
+  void updateComments(final BuiltList<dynamic>? comments) {
+    if (state.comments == comments) {
+      return;
+    }
+
+    emit(state.rebuild((final b) {
+      if (comments == null)
+        b.comments = null;
+      else
+        b.comments.replace(comments);
+    }));
+
+    $onUpdateComments();
+  }
+
+  @protected
+  void $onUpdateComments() {}
 
   @mustCallSuper
   void updateProjectDataById(

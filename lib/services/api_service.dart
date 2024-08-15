@@ -44,6 +44,23 @@ class _ApiService {
     final response = await dio.get("tasks?section_id=$id");
     return response.data;
   }
+
+  addComment(projectId, taskId, String? comment) async {
+    final response = await dio.post("comments", data: {
+      "task_id": taskId,
+      "project_id": projectId,
+      "content": comment,
+    });
+    return response.data;
+  }
+
+  getAllComment(String? projectId, taskId) async {
+    final response = await dio.get(
+      "comments?task_id=${taskId}",
+      // queryParameters: {"task_id": taskId, "project_id": projectId}
+    );
+    return response.data;
+  }
 }
 
 final apiService = _ApiService();

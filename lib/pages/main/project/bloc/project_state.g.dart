@@ -8,15 +8,25 @@ part of 'project_state.dart';
 
 class _$ProjectState extends ProjectState {
   @override
-  final AppFlowyBoardController controller;
-  @override
   final AppFlowyBoardScrollController boardController;
   @override
+  final String? title;
+  @override
+  final String? comment;
+  @override
+  final int? activeIndex;
+  @override
   final ApiState<void> allProjectApi;
+  @override
+  final ApiState<void> addCommentApi;
+  @override
+  final ApiState<void> allCommentApi;
   @override
   final ApiState<void> projectDataApi;
   @override
   final BuiltList<ProjectData> allProjects;
+  @override
+  final BuiltList<dynamic>? comments;
   @override
   final BuiltList<ProjectDataById>? projectDataById;
 
@@ -24,19 +34,26 @@ class _$ProjectState extends ProjectState {
       (new ProjectStateBuilder()..update(updates))._build();
 
   _$ProjectState._(
-      {required this.controller,
-      required this.boardController,
+      {required this.boardController,
+      this.title,
+      this.comment,
+      this.activeIndex,
       required this.allProjectApi,
+      required this.addCommentApi,
+      required this.allCommentApi,
       required this.projectDataApi,
       required this.allProjects,
+      this.comments,
       this.projectDataById})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        controller, r'ProjectState', 'controller');
     BuiltValueNullFieldError.checkNotNull(
         boardController, r'ProjectState', 'boardController');
     BuiltValueNullFieldError.checkNotNull(
         allProjectApi, r'ProjectState', 'allProjectApi');
+    BuiltValueNullFieldError.checkNotNull(
+        addCommentApi, r'ProjectState', 'addCommentApi');
+    BuiltValueNullFieldError.checkNotNull(
+        allCommentApi, r'ProjectState', 'allCommentApi');
     BuiltValueNullFieldError.checkNotNull(
         projectDataApi, r'ProjectState', 'projectDataApi');
     BuiltValueNullFieldError.checkNotNull(
@@ -54,22 +71,32 @@ class _$ProjectState extends ProjectState {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ProjectState &&
-        controller == other.controller &&
         boardController == other.boardController &&
+        title == other.title &&
+        comment == other.comment &&
+        activeIndex == other.activeIndex &&
         allProjectApi == other.allProjectApi &&
+        addCommentApi == other.addCommentApi &&
+        allCommentApi == other.allCommentApi &&
         projectDataApi == other.projectDataApi &&
         allProjects == other.allProjects &&
+        comments == other.comments &&
         projectDataById == other.projectDataById;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, controller.hashCode);
     _$hash = $jc(_$hash, boardController.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, comment.hashCode);
+    _$hash = $jc(_$hash, activeIndex.hashCode);
     _$hash = $jc(_$hash, allProjectApi.hashCode);
+    _$hash = $jc(_$hash, addCommentApi.hashCode);
+    _$hash = $jc(_$hash, allCommentApi.hashCode);
     _$hash = $jc(_$hash, projectDataApi.hashCode);
     _$hash = $jc(_$hash, allProjects.hashCode);
+    _$hash = $jc(_$hash, comments.hashCode);
     _$hash = $jc(_$hash, projectDataById.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -78,11 +105,16 @@ class _$ProjectState extends ProjectState {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectState')
-          ..add('controller', controller)
           ..add('boardController', boardController)
+          ..add('title', title)
+          ..add('comment', comment)
+          ..add('activeIndex', activeIndex)
           ..add('allProjectApi', allProjectApi)
+          ..add('addCommentApi', addCommentApi)
+          ..add('allCommentApi', allCommentApi)
           ..add('projectDataApi', projectDataApi)
           ..add('allProjects', allProjects)
+          ..add('comments', comments)
           ..add('projectDataById', projectDataById))
         .toString();
   }
@@ -92,21 +124,40 @@ class ProjectStateBuilder
     implements Builder<ProjectState, ProjectStateBuilder> {
   _$ProjectState? _$v;
 
-  AppFlowyBoardController? _controller;
-  AppFlowyBoardController? get controller => _$this._controller;
-  set controller(AppFlowyBoardController? controller) =>
-      _$this._controller = controller;
-
   AppFlowyBoardScrollController? _boardController;
   AppFlowyBoardScrollController? get boardController => _$this._boardController;
   set boardController(AppFlowyBoardScrollController? boardController) =>
       _$this._boardController = boardController;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _comment;
+  String? get comment => _$this._comment;
+  set comment(String? comment) => _$this._comment = comment;
+
+  int? _activeIndex;
+  int? get activeIndex => _$this._activeIndex;
+  set activeIndex(int? activeIndex) => _$this._activeIndex = activeIndex;
 
   ApiStateBuilder<void>? _allProjectApi;
   ApiStateBuilder<void> get allProjectApi =>
       _$this._allProjectApi ??= new ApiStateBuilder<void>();
   set allProjectApi(ApiStateBuilder<void>? allProjectApi) =>
       _$this._allProjectApi = allProjectApi;
+
+  ApiStateBuilder<void>? _addCommentApi;
+  ApiStateBuilder<void> get addCommentApi =>
+      _$this._addCommentApi ??= new ApiStateBuilder<void>();
+  set addCommentApi(ApiStateBuilder<void>? addCommentApi) =>
+      _$this._addCommentApi = addCommentApi;
+
+  ApiStateBuilder<void>? _allCommentApi;
+  ApiStateBuilder<void> get allCommentApi =>
+      _$this._allCommentApi ??= new ApiStateBuilder<void>();
+  set allCommentApi(ApiStateBuilder<void>? allCommentApi) =>
+      _$this._allCommentApi = allCommentApi;
 
   ApiStateBuilder<void>? _projectDataApi;
   ApiStateBuilder<void> get projectDataApi =>
@@ -119,6 +170,11 @@ class ProjectStateBuilder
       _$this._allProjects ??= new ListBuilder<ProjectData>();
   set allProjects(ListBuilder<ProjectData>? allProjects) =>
       _$this._allProjects = allProjects;
+
+  ListBuilder<dynamic>? _comments;
+  ListBuilder<dynamic> get comments =>
+      _$this._comments ??= new ListBuilder<dynamic>();
+  set comments(ListBuilder<dynamic>? comments) => _$this._comments = comments;
 
   ListBuilder<ProjectDataById>? _projectDataById;
   ListBuilder<ProjectDataById> get projectDataById =>
@@ -133,11 +189,16 @@ class ProjectStateBuilder
   ProjectStateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _controller = $v.controller;
       _boardController = $v.boardController;
+      _title = $v.title;
+      _comment = $v.comment;
+      _activeIndex = $v.activeIndex;
       _allProjectApi = $v.allProjectApi.toBuilder();
+      _addCommentApi = $v.addCommentApi.toBuilder();
+      _allCommentApi = $v.allCommentApi.toBuilder();
       _projectDataApi = $v.projectDataApi.toBuilder();
       _allProjects = $v.allProjects.toBuilder();
+      _comments = $v.comments?.toBuilder();
       _projectDataById = $v.projectDataById?.toBuilder();
       _$v = null;
     }
@@ -163,23 +224,33 @@ class ProjectStateBuilder
     try {
       _$result = _$v ??
           new _$ProjectState._(
-              controller: BuiltValueNullFieldError.checkNotNull(
-                  controller, r'ProjectState', 'controller'),
               boardController: BuiltValueNullFieldError.checkNotNull(
                   boardController, r'ProjectState', 'boardController'),
+              title: title,
+              comment: comment,
+              activeIndex: activeIndex,
               allProjectApi: allProjectApi.build(),
+              addCommentApi: addCommentApi.build(),
+              allCommentApi: allCommentApi.build(),
               projectDataApi: projectDataApi.build(),
               allProjects: allProjects.build(),
+              comments: _comments?.build(),
               projectDataById: _projectDataById?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'allProjectApi';
         allProjectApi.build();
+        _$failedField = 'addCommentApi';
+        addCommentApi.build();
+        _$failedField = 'allCommentApi';
+        allCommentApi.build();
         _$failedField = 'projectDataApi';
         projectDataApi.build();
         _$failedField = 'allProjects';
         allProjects.build();
+        _$failedField = 'comments';
+        _comments?.build();
         _$failedField = 'projectDataById';
         _projectDataById?.build();
       } catch (e) {
