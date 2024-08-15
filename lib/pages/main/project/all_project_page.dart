@@ -32,6 +32,7 @@ class AllProjects extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
+                                    ProjectBloc.of(context).controller!.clear();
                                     ProjectView.push(
                                         context, data[index].id!, index);
                                   },
